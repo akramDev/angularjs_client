@@ -21,13 +21,28 @@ angular.module('ngBoilerplate.account', ['ui.router'])
 		data: { pageTitle: "Register" }
 	});
 })
-.controller('LoginCtrl',function($scope){
+.factory('sessionService', function(){
+	var session = {};
+	session.login = function(data){
+		localStorage.setItem("session", data);
+	};
+	session.logout = function(){
+		localStorage.removeItem("session");
+	};
+	session.isLogedIn = function(){
+		return localStorage.getItem("session") != null;
+	};
+	return session;
+})
+.controller('LoginCtrl',function($scope, sessionService, $state){
 	$scope.login = function(){
-		alert("user logged with " + $scope.account.name + " and " + $scope.account.password);
+		sessionService.login($scope.account);
+		$state.go('home');
 	};
 })
-.controller('RegisterCtrl',function($scope){
+.controller('RegisterCtrl',function($scope, sessionService, $state){
 	$scope.register = function(){
-		alert("user register with " + $scope.account.name + " and " + $scope.account.password);
+		sessionService.login($scope.account);
+		$state.go('home');
 	};
 });
