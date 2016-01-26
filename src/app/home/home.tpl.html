@@ -36,22 +36,24 @@
     <li plus-one></li>
   </ul> 
   
-  <div ng-hide="isLogedIn()" class="btn-group">
-    <a ui-sref="login"  class="btn btn-large btn-default">
+  <div class="btn-group" ng-hide="isLoggedIn()">
+    <a ui-sref="login" class="btn btn-large btn-default">
       <i class="fa fa-book"></i>
       Login
     </a>
-    <a ui-sref="register"  class="btn btn-large btn-success">
+    <a ui-sref="register" class="btn btn-large btn-success">
       <i class="fa fa-download"></i>
       Register
     </a>
   </div>
-  <div ng-show="isLogedIn()" class="btn-group">
-    <a ng-click="logout()" class="btn btn-large btn-default">
-      <i class="fa fa-book"></i>
-      Logout
-    </a>
-  </div>
+
+    <div class="btn-group" ng-show="isLoggedIn()">
+        <a ng-click="logout()" class="btn btn-large btn-default">
+            <i class="fa fa-book"></i>
+            Logout
+        </a>
+    </div>
+
 
 </div>
 
